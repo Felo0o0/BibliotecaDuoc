@@ -1,3 +1,8 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
 package com.duoc.library.main;
 
 import com.duoc.library.model.*;
@@ -13,14 +18,14 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            System.out.println("=== LIBRARY MANAGEMENT SYSTEM ===");
-            System.out.flush(); // Forzar salida
+            System.out.println("=== SISTEMA DE GESTION DE BIBLIOTECA ===");
+            System.out.flush();
             
             loadInitialData();
             showMainMenu();
             
         } catch (Exception e) {
-            System.err.println("Critical error: " + e.getMessage());
+            System.err.println("Error critico: " + e.getMessage());
             e.printStackTrace();
         } finally {
             if (scanner != null) {
@@ -31,7 +36,7 @@ public class Main {
 
     private static void loadInitialData() {
         try {
-            System.out.println("Loading initial data...");
+            System.out.println("Cargando datos iniciales...");
             
             // Load sample books
             libraryService.addBook(new Book("978-0134685991", "Effective Java", "Joshua Bloch"));
@@ -39,14 +44,14 @@ public class Main {
             libraryService.addBook(new Book("978-0321356680", "Effective Unit Testing", "Lasse Koskela"));
             
             // Load sample users
-            libraryService.addUser(new User("U001", "John Doe", "john.doe@email.com"));
-            libraryService.addUser(new User("U002", "Jane Smith", "jane.smith@email.com"));
+            libraryService.addUser(new User("U001", "Juan Perez", "juan.perez@email.com"));
+            libraryService.addUser(new User("U002", "Maria Silva", "maria.silva@email.com"));
             
-            System.out.println("Initial data loaded successfully.");
+            System.out.println("Datos iniciales cargados exitosamente.");
             System.out.flush();
             
         } catch (Exception e) {
-            System.err.println("Error loading initial data: " + e.getMessage());
+            System.err.println("Error cargando datos iniciales: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -54,19 +59,19 @@ public class Main {
     private static void showMainMenu() {
         while (true) {
             try {
-                System.out.println("\n=== MAIN MENU ===");
-                System.out.println("1. Book Management");
-                System.out.println("2. User Management");
-                System.out.println("3. Loan Management");
-                System.out.println("4. Reports");
-                System.out.println("5. File Operations");
-                System.out.println("0. Exit");
-                System.out.print("Select an option: ");
+                System.out.println("\n=== MENU PRINCIPAL ===");
+                System.out.println("1. Gestion de Libros");
+                System.out.println("2. Gestion de Usuarios");
+                System.out.println("3. Gestion de Prestamos");
+                System.out.println("4. Reportes");
+                System.out.println("5. Operaciones de Archivos");
+                System.out.println("0. Salir");
+                System.out.print("Seleccione una opcion: ");
                 System.out.flush();
 
                 String input = scanner.nextLine();
                 if (input == null || input.trim().isEmpty()) {
-                    System.out.println("Please enter a valid option.");
+                    System.out.println("Por favor ingrese una opcion valida.");
                     continue;
                 }
 
@@ -79,15 +84,15 @@ public class Main {
                     case 4: showReportsMenu(); break;
                     case 5: showFileMenu(); break;
                     case 0: 
-                        System.out.println("Thank you for using the Library Management System!");
+                        System.out.println("Gracias por usar el Sistema de Gestion de Biblioteca!");
                         return;
                     default: 
-                        System.out.println("Invalid option. Please try again.");
+                        System.out.println("Opcion invalida. Por favor intente nuevamente.");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Please enter a valid number.");
+                System.err.println("Por favor ingrese un numero valido.");
             } catch (Exception e) {
-                System.err.println("Unexpected error: " + e.getMessage());
+                System.err.println("Error inesperado: " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -96,18 +101,18 @@ public class Main {
     private static void showBookMenu() {
         while (true) {
             try {
-                System.out.println("\n=== BOOK MANAGEMENT ===");
-                System.out.println("1. Add Book");
-                System.out.println("2. Search Book by ISBN");
-                System.out.println("3. Search Books by Title");
-                System.out.println("4. List All Books");
-                System.out.println("0. Back to Main Menu");
-                System.out.print("Select an option: ");
+                System.out.println("\n=== GESTION DE LIBROS ===");
+                System.out.println("1. Agregar Libro");
+                System.out.println("2. Buscar Libro por ISBN");
+                System.out.println("3. Buscar Libros por Titulo");
+                System.out.println("4. Listar Todos los Libros");
+                System.out.println("0. Volver al Menu Principal");
+                System.out.print("Seleccione una opcion: ");
                 System.out.flush();
 
                 String input = scanner.nextLine();
                 if (input == null || input.trim().isEmpty()) {
-                    System.out.println("Please enter a valid option.");
+                    System.out.println("Por favor ingrese una opcion valida.");
                     continue;
                 }
 
@@ -119,75 +124,75 @@ public class Main {
                     case 3: searchBooksByTitle(); break;
                     case 4: listAllBooks(); break;
                     case 0: return;
-                    default: System.out.println("Invalid option. Please try again.");
+                    default: System.out.println("Opcion invalida. Por favor intente nuevamente.");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Please enter a valid number.");
+                System.err.println("Por favor ingrese un numero valido.");
             } catch (Exception e) {
-                System.err.println("Unexpected error: " + e.getMessage());
+                System.err.println("Error inesperado: " + e.getMessage());
             }
         }
     }
 
     private static void addBook() {
         try {
-            System.out.print("Enter ISBN: ");
+            System.out.print("Ingrese ISBN: ");
             System.out.flush();
             String isbn = scanner.nextLine();
             
-            System.out.print("Enter Title: ");
+            System.out.print("Ingrese Titulo: ");
             System.out.flush();
             String title = scanner.nextLine();
             
-            System.out.print("Enter Author: ");
+            System.out.print("Ingrese Autor: ");
             System.out.flush();
             String author = scanner.nextLine();
 
             Book book = new Book(isbn, title, author);
             libraryService.addBook(book);
-            System.out.println("Book added successfully: " + book);
+            System.out.println("Libro agregado exitosamente: " + book);
             
         } catch (IllegalArgumentException e) {
-            System.err.println("Error adding book: " + e.getMessage());
+            System.err.println("Error agregando libro: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
     private static void searchBookByIsbn() {
         try {
-            System.out.print("Enter ISBN: ");
+            System.out.print("Ingrese ISBN: ");
             System.out.flush();
             String isbn = scanner.nextLine();
             
             Book book = libraryService.findBookByIsbn(isbn);
             if (book != null) {
-                System.out.println("Book found: " + book);
+                System.out.println("Libro encontrado: " + book);
             } else {
-                System.out.println("Book with ISBN " + isbn + " not found.");
+                System.out.println("Libro con ISBN " + isbn + " no encontrado.");
             }
             
         } catch (Exception e) {
-            System.err.println("Error searching book: " + e.getMessage());
+            System.err.println("Error buscando libro: " + e.getMessage());
         }
     }
 
     private static void searchBooksByTitle() {
         try {
-            System.out.print("Enter title (partial search): ");
+            System.out.print("Ingrese titulo (busqueda parcial): ");
             System.out.flush();
             String title = scanner.nextLine();
             
             List<Book> books = libraryService.searchBooksByTitle(title);
             if (books.isEmpty()) {
-                System.out.println("No books found with title containing: " + title);
+                System.out.println("No se encontraron libros con titulo que contenga: " + title);
             } else {
-                System.out.println("Books found:");
+                System.out.println("Libros encontrados:");
                 books.forEach(System.out::println);
             }
             
         } catch (Exception e) {
-            System.err.println("Error searching books: " + e.getMessage());
+            System.err.println("Error buscando libros: " + e.getMessage());
         }
     }
 
@@ -195,27 +200,25 @@ public class Main {
         try {
             List<Book> books = libraryService.getAllBooks();
             if (books.isEmpty()) {
-                System.out.println("No books in the library.");
+                System.out.println("No hay libros en la biblioteca.");
             } else {
-                System.out.println("All books in the library:");
+                System.out.println("Todos los libros en la biblioteca:");
                 books.forEach(System.out::println);
             }
         } catch (Exception e) {
-            System.err.println("Error listing books: " + e.getMessage());
+            System.err.println("Error listando libros: " + e.getMessage());
         }
     }
 
-    // ... resto de métodos con el mismo patrón de System.out.flush()
-    
     private static void showUserMenu() {
         while (true) {
             try {
-                System.out.println("\n=== USER MANAGEMENT ===");
-                System.out.println("1. Add User");
-                System.out.println("2. Find User by ID");
-                System.out.println("3. List All Users");
-                System.out.println("0. Back to Main Menu");
-                System.out.print("Select an option: ");
+                System.out.println("\n=== GESTION DE USUARIOS ===");
+                System.out.println("1. Agregar Usuario");
+                System.out.println("2. Buscar Usuario por ID");
+                System.out.println("3. Listar Todos los Usuarios");
+                System.out.println("0. Volver al Menu Principal");
+                System.out.print("Seleccione una opcion: ");
                 System.out.flush();
 
                 String input = scanner.nextLine();
@@ -226,52 +229,52 @@ public class Main {
                     case 2: findUser(); break;
                     case 3: listAllUsers(); break;
                     case 0: return;
-                    default: System.out.println("Invalid option. Please try again.");
+                    default: System.out.println("Opcion invalida. Por favor intente nuevamente.");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Please enter a valid number.");
+                System.err.println("Por favor ingrese un numero valido.");
             }
         }
     }
 
     private static void addUser() {
         try {
-            System.out.print("Enter User ID: ");
+            System.out.print("Ingrese ID de Usuario: ");
             System.out.flush();
             String id = scanner.nextLine();
             
-            System.out.print("Enter Name: ");
+            System.out.print("Ingrese Nombre: ");
             System.out.flush();
             String name = scanner.nextLine();
             
-            System.out.print("Enter Email: ");
+            System.out.print("Ingrese Email: ");
             System.out.flush();
             String email = scanner.nextLine();
 
             User user = new User(id, name, email);
             libraryService.addUser(user);
-            System.out.println("User added successfully: " + user);
+            System.out.println("Usuario agregado exitosamente: " + user);
             
         } catch (InvalidUserException e) {
-            System.err.println("Error adding user: " + e.getMessage());
+            System.err.println("Error agregando usuario: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
     private static void findUser() {
         try {
-            System.out.print("Enter User ID: ");
+            System.out.print("Ingrese ID de Usuario: ");
             System.out.flush();
             String id = scanner.nextLine();
             
             User user = libraryService.findUserById(id);
-            System.out.println("User found: " + user);
+            System.out.println("Usuario encontrado: " + user);
             
         } catch (InvalidUserException e) {
-            System.err.println("Error finding user: " + e.getMessage());
+            System.err.println("Error buscando usuario: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
@@ -279,27 +282,27 @@ public class Main {
         try {
             Collection<User> users = libraryService.getAllUsers();
             if (users.isEmpty()) {
-                System.out.println("No users registered.");
+                System.out.println("No hay usuarios registrados.");
             } else {
-                System.out.println("All registered users:");
+                System.out.println("Todos los usuarios registrados:");
                 users.forEach(System.out::println);
             }
         } catch (Exception e) {
-            System.err.println("Error listing users: " + e.getMessage());
+            System.err.println("Error listando usuarios: " + e.getMessage());
         }
     }
 
     private static void showLoanMenu() {
         while (true) {
             try {
-                System.out.println("\n=== LOAN MANAGEMENT ===");
-                System.out.println("1. Loan Book");
-                System.out.println("2. Return Book");
-                System.out.println("3. View User Loans");
-                System.out.println("4. View Active Loans");
-                System.out.println("5. View Overdue Loans");
-                System.out.println("0. Back to Main Menu");
-                System.out.print("Select an option: ");
+                System.out.println("\n=== GESTION DE PRESTAMOS ===");
+                System.out.println("1. Prestar Libro");
+                System.out.println("2. Devolver Libro");
+                System.out.println("3. Ver Prestamos de Usuario");
+                System.out.println("4. Ver Prestamos Activos");
+                System.out.println("5. Ver Prestamos Vencidos");
+                System.out.println("0. Volver al Menu Principal");
+                System.out.print("Seleccione una opcion: ");
                 System.out.flush();
 
                 String input = scanner.nextLine();
@@ -312,68 +315,68 @@ public class Main {
                     case 4: viewActiveLoans(); break;
                     case 5: viewOverdueLoans(); break;
                     case 0: return;
-                    default: System.out.println("Invalid option. Please try again.");
+                    default: System.out.println("Opcion invalida. Por favor intente nuevamente.");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Please enter a valid number.");
+                System.err.println("Por favor ingrese un numero valido.");
             }
         }
     }
 
     private static void loanBook() {
         try {
-            System.out.print("Enter User ID: ");
+            System.out.print("Ingrese ID de Usuario: ");
             System.out.flush();
             String userId = scanner.nextLine();
             
-            System.out.print("Enter Book ISBN: ");
+            System.out.print("Ingrese ISBN del Libro: ");
             System.out.flush();
             String isbn = scanner.nextLine();
 
             Loan loan = libraryService.loanBook(userId, isbn);
-            System.out.println("Book loaned successfully: " + loan);
+            System.out.println("Libro prestado exitosamente: " + loan);
             
         } catch (InvalidUserException | BookNotFoundException | BookAlreadyLoanedException e) {
-            System.err.println("Error processing loan: " + e.getMessage());
+            System.err.println("Error procesando prestamo: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
     private static void returnBook() {
         try {
-            System.out.print("Enter Loan ID: ");
+            System.out.print("Ingrese ID del Prestamo: ");
             System.out.flush();
             String loanId = scanner.nextLine();
 
             libraryService.returnBook(loanId);
-            System.out.println("Book returned successfully.");
+            System.out.println("Libro devuelto exitosamente.");
             
         } catch (IllegalArgumentException e) {
-            System.err.println("Error returning book: " + e.getMessage());
+            System.err.println("Error devolviendo libro: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
     private static void viewUserLoans() {
         try {
-            System.out.print("Enter User ID: ");
+            System.out.print("Ingrese ID de Usuario: ");
             System.out.flush();
             String userId = scanner.nextLine();
             
             List<Loan> loans = libraryService.getUserLoans(userId);
             if (loans.isEmpty()) {
-                System.out.println("No loans found for user: " + userId);
+                System.out.println("No se encontraron prestamos para el usuario: " + userId);
             } else {
-                System.out.println("Loans for user " + userId + ":");
+                System.out.println("Prestamos para el usuario " + userId + ":");
                 loans.forEach(System.out::println);
             }
             
         } catch (InvalidUserException e) {
-            System.err.println("Error viewing user loans: " + e.getMessage());
+            System.err.println("Error viendo prestamos de usuario: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
@@ -381,13 +384,13 @@ public class Main {
         try {
             List<Loan> loans = libraryService.getActiveLoans();
             if (loans.isEmpty()) {
-                System.out.println("No active loans.");
+                System.out.println("No hay prestamos activos.");
             } else {
-                System.out.println("Active loans:");
+                System.out.println("Prestamos activos:");
                 loans.forEach(System.out::println);
             }
         } catch (Exception e) {
-            System.err.println("Error viewing active loans: " + e.getMessage());
+            System.err.println("Error viendo prestamos activos: " + e.getMessage());
         }
     }
 
@@ -395,37 +398,37 @@ public class Main {
         try {
             List<Loan> loans = libraryService.getOverdueLoans();
             if (loans.isEmpty()) {
-                System.out.println("No overdue loans.");
+                System.out.println("No hay prestamos vencidos.");
             } else {
-                System.out.println("Overdue loans:");
+                System.out.println("Prestamos vencidos:");
                 loans.forEach(System.out::println);
             }
         } catch (Exception e) {
-            System.err.println("Error viewing overdue loans: " + e.getMessage());
+            System.err.println("Error viendo prestamos vencidos: " + e.getMessage());
         }
     }
 
     private static void showReportsMenu() {
-        System.out.println("\n=== REPORTS ===");
-        System.out.println("Available Books: " + libraryService.getAllBooks().stream().filter(Book::isAvailable).count());
-        System.out.println("Loaned Books: " + libraryService.getAllBooks().stream().filter(book -> !book.isAvailable()).count());
-        System.out.println("Total Users: " + libraryService.getAllUsers().size());
-        System.out.println("Active Loans: " + libraryService.getActiveLoans().size());
-        System.out.println("Overdue Loans: " + libraryService.getOverdueLoans().size());
+        System.out.println("\n=== REPORTES ===");
+        System.out.println("Libros Disponibles: " + libraryService.getAllBooks().stream().filter(Book::isAvailable).count());
+        System.out.println("Libros Prestados: " + libraryService.getAllBooks().stream().filter(book -> !book.isAvailable()).count());
+        System.out.println("Total de Usuarios: " + libraryService.getAllUsers().size());
+        System.out.println("Prestamos Activos: " + libraryService.getActiveLoans().size());
+        System.out.println("Prestamos Vencidos: " + libraryService.getOverdueLoans().size());
         System.out.flush();
     }
 
     private static void showFileMenu() {
         while (true) {
             try {
-                System.out.println("\n=== FILE OPERATIONS ===");
-                System.out.println("1. Load Books from CSV");
-                System.out.println("2. Load Users from CSV");
-                System.out.println("3. Export Books to CSV");
-                System.out.println("4. Export Users to CSV");
-                System.out.println("5. Export Loans to CSV");
-                System.out.println("0. Back to Main Menu");
-                System.out.print("Select an option: ");
+                System.out.println("\n=== OPERACIONES DE ARCHIVOS ===");
+                System.out.println("1. Cargar Libros desde CSV");
+                System.out.println("2. Cargar Usuarios desde CSV");
+                System.out.println("3. Exportar Libros a CSV");
+                System.out.println("4. Exportar Usuarios a CSV");
+                System.out.println("5. Exportar Prestamos a CSV");
+                System.out.println("0. Volver al Menu Principal");
+                System.out.print("Seleccione una opcion: ");
                 System.out.flush();
 
                 String input = scanner.nextLine();
@@ -438,17 +441,17 @@ public class Main {
                     case 4: exportUsersToCSV(); break;
                     case 5: exportLoansToCSV(); break;
                     case 0: return;
-                    default: System.out.println("Invalid option. Please try again.");
+                    default: System.out.println("Opcion invalida. Por favor intente nuevamente.");
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Please enter a valid number.");
+                System.err.println("Por favor ingrese un numero valido.");
             }
         }
     }
 
     private static void loadBooksFromCSV() {
         try {
-            System.out.print("Enter CSV filename: ");
+            System.out.print("Ingrese nombre del archivo CSV: ");
             System.out.flush();
             String filename = scanner.nextLine();
             
@@ -457,25 +460,25 @@ public class Main {
                 try {
                     libraryService.addBook(book);
                 } catch (IllegalArgumentException e) {
-                    System.err.println("Skipping duplicate book: " + book.getIsbn());
+                    System.err.println("Omitiendo libro duplicado: " + book.getIsbn());
                 }
             }
-            System.out.println("Books loaded successfully from " + filename);
+            System.out.println("Libros cargados exitosamente desde " + filename);
             
-        } catch (FileNotFoundException e) {
-            System.err.println("File error: " + e.getMessage());
+        } catch (java.io.FileNotFoundException e) {
+            System.err.println("Error de archivo: " + e.getMessage());
         } catch (IOException e) {
-            System.err.println("IO error: " + e.getMessage());
+            System.err.println("Error de E/S: " + e.getMessage());
         } catch (IllegalArgumentException e) {
-            System.err.println("Data format error: " + e.getMessage());
+            System.err.println("Error de formato de datos: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
     private static void loadUsersFromCSV() {
         try {
-            System.out.print("Enter CSV filename: ");
+            System.out.print("Ingrese nombre del archivo CSV: ");
             System.out.flush();
             String filename = scanner.nextLine();
             
@@ -484,67 +487,67 @@ public class Main {
                 try {
                     libraryService.addUser(user);
                 } catch (InvalidUserException e) {
-                    System.err.println("Skipping duplicate user: " + user.getId());
+                    System.err.println("Omitiendo usuario duplicado: " + user.getId());
                 }
             }
-            System.out.println("Users loaded successfully from " + filename);
+            System.out.println("Usuarios cargados exitosamente desde " + filename);
             
-        } catch (FileNotFoundException e) {
-            System.err.println("File error: " + e.getMessage());
+        } catch (java.io.FileNotFoundException e) {
+            System.err.println("Error de archivo: " + e.getMessage());
         } catch (IOException e) {
-            System.err.println("IO error: " + e.getMessage());
+            System.err.println("Error de E/S: " + e.getMessage());
         } catch (IllegalArgumentException e) {
-            System.err.println("Data format error: " + e.getMessage());
+            System.err.println("Error de formato de datos: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
     private static void exportBooksToCSV() {
         try {
-            System.out.print("Enter output filename: ");
+            System.out.print("Ingrese nombre del archivo de salida: ");
             System.out.flush();
             String filename = scanner.nextLine();
             
-            com.duoc.library.util.FileWriter.writeBooksToCSV(libraryService.getAllBooks(), filename);
-            System.out.println("Books exported successfully to " + filename);
+            FileWriter.writeBooksToCSV(libraryService.getAllBooks(), filename);
+            System.out.println("Libros exportados exitosamente a " + filename);
             
         } catch (IOException e) {
-            System.err.println("Error exporting books: " + e.getMessage());
+            System.err.println("Error exportando libros: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
     private static void exportUsersToCSV() {
         try {
-            System.out.print("Enter output filename: ");
+            System.out.print("Ingrese nombre del archivo de salida: ");
             System.out.flush();
             String filename = scanner.nextLine();
             
-            com.duoc.library.util.FileWriter.writeUsersToCSV(new ArrayList<>(libraryService.getAllUsers()), filename);
-            System.out.println("Users exported successfully to " + filename);
+            FileWriter.writeUsersToCSV(new ArrayList<>(libraryService.getAllUsers()), filename);
+            System.out.println("Usuarios exportados exitosamente a " + filename);
             
         } catch (IOException e) {
-            System.err.println("Error exporting users: " + e.getMessage());
+            System.err.println("Error exportando usuarios: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 
     private static void exportLoansToCSV() {
         try {
-            System.out.print("Enter output filename: ");
+            System.out.print("Ingrese nombre del archivo de salida: ");
             System.out.flush();
             String filename = scanner.nextLine();
             
-            com.duoc.library.util.FileWriter.writeLoansToCSV(libraryService.getActiveLoans(), filename);
-            System.out.println("Loans exported successfully to " + filename);
+            FileWriter.writeLoansToCSV(libraryService.getActiveLoans(), filename);
+            System.out.println("Prestamos exportados exitosamente a " + filename);
             
         } catch (IOException e) {
-            System.err.println("Error exporting loans: " + e.getMessage());
+            System.err.println("Error exportando prestamos: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Unexpected error: " + e.getMessage());
+            System.err.println("Error inesperado: " + e.getMessage());
         }
     }
 }
